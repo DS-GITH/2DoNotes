@@ -1,6 +1,6 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Entypo from '@expo/vector-icons/Entypo';
+import Icons from '@expo/vector-icons/Entypo';
 
 export default function Menu() {
     const data = [
@@ -19,7 +19,7 @@ export default function Menu() {
             <Text style={styles.title}> Listagem </Text>
 
             <TouchableOpacity style={styles.addbutton}>
-                <Entypo name="add-to-list" color={'#fff'} size={24} />
+                <Icons name="add-to-list" color={'#fff'} size={24} />
             </TouchableOpacity>
 
         </View>
@@ -32,6 +32,9 @@ export default function Menu() {
                 <TouchableOpacity style={styles.itemButton}>
                     <Text style={styles.itemText}>{item.title}</Text> 
                 </TouchableOpacity>
+
+
+
         )}
             
             />
