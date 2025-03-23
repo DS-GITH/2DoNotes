@@ -1,8 +1,13 @@
 import React from "react";
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../../navigation/RooStackParamsList";
+import { ScreenName } from '../../constants/ScreenName'
 
-export default function Menu() {
+type Props = NativeStackScreenProps<RootStackParamsList, ScreenName>
+
+const Menu = ({ route, navigation } : Props) => {
     const data = [
         
         {id: 1, title: 'Estudar sobre python', done: false},
@@ -18,8 +23,12 @@ export default function Menu() {
 
             <Text style={styles.title}> Listagem </Text>
 
-            <TouchableOpacity style={styles.addbutton}>
+            <TouchableOpacity 
+            style={styles.addbutton} 
+            onPress={() => {navigation.navigate(ScreenName.Adding,{} )}}>
+
                 <Icons name="add-to-list" color={'#fff'} size={24} />
+
             </TouchableOpacity>
 
         </View>
@@ -45,6 +54,7 @@ export default function Menu() {
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         paddingTop: 30,
         backgroundColor: '#fff',
     },
@@ -72,3 +82,5 @@ const styles = StyleSheet.create({
     itemText:{},
     itemButton:{},
 });
+
+export default Menu;

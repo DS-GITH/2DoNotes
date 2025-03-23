@@ -1,7 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
-export default function Adding() {
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamsList } from "../../navigation/RooStackParamsList";
+import { ScreenName } from '../../constants/ScreenName';
+
+type Props = NativeStackScreenProps<RootStackParamsList, ScreenName>
+
+
+const Adding = ({ route, navigation } : Props) => {
+    
     return(
         <View style={styles.container}>
             <Text style={styles.pageTitle}> Adicione uma tarefa </Text>
@@ -26,8 +34,11 @@ export default function Adding() {
                 <Text style={styles.addButtonText}>Adicionar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.cancelButton}>
+            <TouchableOpacity style={styles.cancelButton}
+                 onPress={() => {navigation.goBack()}}>  
+
                 <Text style={styles.cancelButtonText}> Cancelar </Text>
+
             </TouchableOpacity>
 
         </View>
@@ -101,3 +112,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 });
+
+export default Adding;
