@@ -33,20 +33,15 @@ const Menu = ({ route, navigation } : Props) => {
 
         </View>
 
-            <FlatList 
-            data={data} 
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => ( 
-
-                <TouchableOpacity style={styles.itemButton}>
-                    <Text style={styles.itemText}>{item.title}</Text> 
-                </TouchableOpacity>
-
-
-
-        )}
-            
-            />
+            <View style={styles.listBox}>
+                <FlatList
+                data={data} 
+                keyExtractor={item => item.id.toString()}
+                renderItem={({item}) => ( 
+                    <TouchableOpacity style={styles.itemButton}>
+                        <Text style={styles.itemText}>{item.title}</Text> 
+                    </TouchableOpacity>)}/>
+            </View>
 
         </View>
   );
@@ -79,7 +74,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginRight: 30,
     },
-    itemText:{},
+    listBox: {
+        flex: 1,
+        padding: 20,
+
+    },
+    itemText:{
+        fontSize: 15,
+    },
     itemButton:{},
 });
 
