@@ -1,4 +1,4 @@
-import React from "react";
+import React,  {useState  }  from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -9,6 +9,10 @@ type Props = NativeStackScreenProps<RootStackParamsList, ScreenName>
 
 
 const Adding = ({ route, navigation } : Props) => {
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [photo, setPhoto] = useState('');
     
     return(
         <View style={styles.container}>
@@ -17,6 +21,10 @@ const Adding = ({ route, navigation } : Props) => {
             <TextInput 
                 style={styles.input}
                 placeholder="Título"
+                value={title}
+                onChangeText={(text) => {
+                    setTitle(text);
+                }}
             />
 
             <TextInput 
@@ -24,6 +32,10 @@ const Adding = ({ route, navigation } : Props) => {
                 placeholder="Descrição"
                 multiline={true}
                 numberOfLines={4}
+                value={description}
+                onChangeText={(text) => {
+                    setDescription(text);
+                }}
             />
 
             <TouchableOpacity style={styles.midiaButton}>
