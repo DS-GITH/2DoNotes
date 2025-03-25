@@ -1,9 +1,10 @@
 import React,  {useState  }  from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../../navigation/RooStackParamsList";
 import { ScreenName } from '../../constants/ScreenName';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Props = NativeStackScreenProps<RootStackParamsList, ScreenName>
 
@@ -21,10 +22,21 @@ const Adding = ({ route, navigation } : Props) => {
         return false;
     };
 
-    const onSave = () => {
+    const onSave = async () => {
         
         if(isValid()){
-            console.log('Salvando...');
+
+                const id = 1
+
+                const task = {
+                    id,
+                    title,
+                    description,
+                    photo,
+                };
+
+        
+            await AsyncStorage.setItem('tasks', JSON.stringify(task));
         }
             
     };
@@ -57,7 +69,8 @@ const Adding = ({ route, navigation } : Props) => {
                 <Icons name="camera" size={24} color="white" />
             </TouchableOpacity>
 
-            <TouchableOpacity style={[styles.addButton, (!isValid()) ? styles.invalidAddButton : '' ]}>
+            <TouchableOpacity style={[styles.addButton, (!isValid()) ? styles.invalidAddButton : '' ]}
+                onPress={onSave}>
                 <Text style={styles.addButtonText}>Adicionar</Text>
             </TouchableOpacity>
 
