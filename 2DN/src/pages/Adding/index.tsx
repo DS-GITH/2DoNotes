@@ -13,6 +13,21 @@ const Adding = ({ route, navigation } : Props) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [photo, setPhoto] = useState('');
+
+    const isValid = () => {
+        if((title !== '') && (title !== null)){
+            return true;
+        }
+        return false;
+    };
+
+    const onSave = () => {
+        
+        if(isValid()){
+            console.log('Salvando...');
+        }
+            
+    };
     
     return(
         <View style={styles.container}>
@@ -42,7 +57,7 @@ const Adding = ({ route, navigation } : Props) => {
                 <Icons name="camera" size={24} color="white" />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.addButton}>
+            <TouchableOpacity style={[styles.addButton, (!isValid()) ? styles.invalidAddButton : '' ]}>
                 <Text style={styles.addButtonText}>Adicionar</Text>
             </TouchableOpacity>
 
@@ -105,6 +120,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 20,
         width: '70%',
+    },
+    invalidAddButton:{
+        opacity: 0.5,
     },
     cancelButton:{
         justifyContent: 'center',
