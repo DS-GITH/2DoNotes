@@ -1,4 +1,4 @@
-import React,  {useState  }  from "react";
+import React,  {useState}  from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -37,6 +37,7 @@ const Adding = ({ route, navigation } : Props) => {
 
         
             await AsyncStorage.setItem('tasks', JSON.stringify(task));
+            navigation.goBack();
         }
             
     };
