@@ -1,19 +1,40 @@
-import React,  {useState}  from "react";
+import React,  {useCallback, useState}  from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../../navigation/RooStackParamsList";
 import { ScreenName } from '../../constants/ScreenName';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 
 type Props = NativeStackScreenProps<RootStackParamsList, ScreenName>
 
 
 const Adding = ({ route, navigation } : Props) => {
-
+    const [tasks, setTasks] = useState<{ id: number; title: string }[]>([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [photo, setPhoto] = useState('');
+
+    const loadTasks = async () => {
+        try {
+            const data = await AsyncStorage.getItem("tasks");
+            if (data) {
+                const parsedTasks = JSON.parse(data);
+                setTasks(Array.isArray(parsedTasks) ? parsedTasks : [parsedTasks]);
+            } else {
+                setTasks(tasks);
+            }
+        } catch (error) {
+            console.error("Erro ao carregar tarefas:", error);
+        }
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            loadTasks();
+        }, [])
+    );
 
     const isValid = () => {
         if((title !== '') && (title !== null)){
@@ -26,7 +47,7 @@ const Adding = ({ route, navigation } : Props) => {
         
         if(isValid()){
 
-                const id = 1
+                const id = tasks.length + 1;
 
                 const task = {
                     id,
@@ -35,8 +56,10 @@ const Adding = ({ route, navigation } : Props) => {
                     photo,
                 };
 
+                tasks.push(task);
+
         
-            await AsyncStorage.setItem('tasks', JSON.stringify(task));
+            await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
             navigation.goBack();
         }
             

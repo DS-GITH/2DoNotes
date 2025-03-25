@@ -19,7 +19,7 @@ const Menu = ({ navigation }: Props) => {
                 const parsedTasks = JSON.parse(data);
                 setTasks(Array.isArray(parsedTasks) ? parsedTasks : [parsedTasks]);
             } else {
-                setTasks([]);
+                setTasks(tasks);
             }
         } catch (error) {
             console.error("Erro ao carregar tarefas:", error);
