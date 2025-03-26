@@ -32,6 +32,10 @@ const Menu = ({ navigation }: Props) => {
         }, [])
     );
 
+    const StateTaskEdit = (taskId: number) => {
+        const task = tasks.find(item => item.id === taskId)
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.Topbox}>
@@ -49,9 +53,15 @@ const Menu = ({ navigation }: Props) => {
                     data={tasks}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
-                        <TouchableOpacity style={styles.itemButton}>
-                            <Text style={styles.itemText}>{item.title}</Text>
-                        </TouchableOpacity>
+                        <View style={styles.itemsBox}>
+                            <TouchableOpacity style={styles.itemButton} onPress={() => {StateTaskEdit(item.id)}}>
+                                <Text style={styles.itemText}>{item.title}</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.editButton}>
+                                <Icons name="edit" size={16} color="black" />
+                            </TouchableOpacity>
+                        </View>
                     )}
                 />
             </View>
@@ -89,11 +99,20 @@ const styles = StyleSheet.create({
     listBox: {
         flex: 1,
         padding: 20,
+        marginBottom: 5,
     },
     itemText: {
         fontSize: 15,
     },
-    itemButton: {},
+    itemsBox:{
+        flexDirection: "row",
+    },
+    itemButton: {
+        flex: 1,
+    },
+    editButton: {
+
+    },
 });
 
 export default Menu;

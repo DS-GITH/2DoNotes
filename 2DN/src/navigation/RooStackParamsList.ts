@@ -7,6 +7,6 @@ type AddingPageParams = {
 };
 
 export type RootStackParamsList = {
-    Menu: MenuPageParams;
-    Adding: AddingPageParams;
+    Adding: { task?: { id: string; title: string; description: string; photo: string } };
+    Menu: undefined;
 };
