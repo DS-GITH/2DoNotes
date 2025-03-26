@@ -32,10 +32,6 @@ const Menu = ({ navigation }: Props) => {
         }, [])
     );
 
-    const StateTaskEdit = (taskId: number) => {
-        const task = tasks.find(item => item.id === taskId)
-    };
-
     return (
         <View style={styles.container}>
             <View style={styles.Topbox}>
@@ -54,7 +50,7 @@ const Menu = ({ navigation }: Props) => {
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
                         <View style={styles.itemsBox}>
-                            <TouchableOpacity style={styles.itemButton} onPress={() => {StateTaskEdit(item.id)}}>
+                            <TouchableOpacity style={styles.itemButton}>
                                 <Text style={styles.itemText}>{item.title}</Text>
                             </TouchableOpacity>
 

@@ -11,13 +11,6 @@ type Props = NativeStackScreenProps<RootStackParamsList, ScreenName>
 
 
 const Adding = ({ route, navigation } : Props) => {
-    const task = route.params?.task || {
-        id: '',
-        title: '',
-        description: '',
-        photo: '',
-    };
-
     const [tasks, setTasks] = useState<{ id: number; title: string }[]>([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
