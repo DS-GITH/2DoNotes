@@ -2,7 +2,7 @@ import React,  {useCallback, useState}  from "react";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamsList } from "../../navigation/RooStackParamsList";
+import { RootStackParamsList } from "../../navigation/RootStackParamsList";
 import { ScreenName } from '../../constants/ScreenName';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";

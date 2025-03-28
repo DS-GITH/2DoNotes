@@ -3,7 +3,7 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Menu from '../pages/Menu'
 import Adding from '../pages/Adding'
-import { RootStackParamsList } from './RooStackParamsList'
+import { RootStackParamsList } from './RootStackParamsList'
 import ScreenName from '../constants/ScreenName'
 
 const Mainstack = () => {

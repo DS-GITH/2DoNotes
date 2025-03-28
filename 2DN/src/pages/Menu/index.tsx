@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Icons from "@expo/vector-icons/Entypo";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamsList } from "../../navigation/RooStackParamsList";
+import { RootStackParamsList } from "../../navigation/RootStackParamsList";
 import { ScreenName } from "../../constants/ScreenName";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
@@ -24,6 +24,10 @@ const Menu = ({ navigation }: Props) => {
         } catch (error) {
             console.error("Erro ao carregar tarefas:", error);
         }
+    };
+
+    const editTask = async (task : {id: number; title: string}) => {
+        navigation.navigate(ScreenName.Adding, { task });
     };
 
     useFocusEffect(
@@ -54,7 +58,8 @@ const Menu = ({ navigation }: Props) => {
                                 <Text style={styles.itemText}>{item.title}</Text>
                             </TouchableOpacity>
 
-                            <TouchableOpacity style={styles.editButton}>
+                            <TouchableOpacity style={styles.editButton}
+                                onPress={() => editTask(item)}>
                                 <Icons name="edit" size={16} color="black" />
                             </TouchableOpacity>
                         </View>
