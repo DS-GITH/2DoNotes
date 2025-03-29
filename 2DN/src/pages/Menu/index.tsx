@@ -58,9 +58,13 @@ const Menu = ({ navigation }: Props) => {
                                 <Text style={styles.itemText}>{item.title}</Text>
                             </TouchableOpacity>
 
+                            <TouchableOpacity style={styles.editButton}>
+                            <Icons name="trash" size={24} color="red" />
+                            </TouchableOpacity>
+
                             <TouchableOpacity style={styles.editButton}
                                 onPress={() => editTask(item)}>
-                                <Icons name="edit" size={16} color="black" />
+                                <Icons name="edit" size={16} color="green" />
                             </TouchableOpacity>
                         </View>
                     )}
