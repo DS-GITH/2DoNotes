@@ -10,7 +10,7 @@ import { useFocusEffect } from "@react-navigation/native";
 type Props = NativeStackScreenProps<RootStackParamsList, ScreenName.Menu>;
 
 const Menu = ({ navigation }: Props) => {
-    const [tasks, setTasks] = useState<{ id: number; title: string }[]>([]);
+    const [tasks, setTasks] = useState<{ id: number; title: string, description: string, photo: string;}[]>([]);
 
     const loadTasks = async () => {
         try {
@@ -26,7 +26,7 @@ const Menu = ({ navigation }: Props) => {
         }
     };
 
-    const editTask = async (task : {id: number; title: string}) => {
+    const editTask = async (task : {id: number; title: string; description: string; photo: string }) => {
         navigation.navigate(ScreenName.Adding, { task });
     };
 
@@ -117,6 +117,3 @@ const styles = StyleSheet.create({
 });
 
 export default Menu;
-
-// Definição correta do RootStackParamsList
-// Removido porque RootStackParamsList já está sendo importado
