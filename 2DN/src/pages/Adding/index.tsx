@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; // Remove useCallback
+import React, { useEffect, useState } from "react"; 
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icons from '@expo/vector-icons/Entypo';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -23,8 +23,8 @@ const Adding = ({ route, navigation }: Props) => {
     useEffect(() => {
         if (editTask) {
             setTitle(editTask.title);
-            setDescription(editTask.description || ''); // Usa '' se description for undefined
-            setPhoto(editTask.photo || ''); // Usa '' se photo for undefined
+            setDescription(editTask.description || ''); 
+            setPhoto(editTask.photo || ''); 
         }}, [editTask]);
 
     const isValid = () => {
@@ -39,18 +39,18 @@ const Adding = ({ route, navigation }: Props) => {
         if (isValid()) {
             try {
     // Estudar
-                // Carrega as tarefas existentes do AsyncStorage
+
                 const data = await AsyncStorage.getItem("tasks");
                 let tasks: { id: number; title: string; description: string; photo: string }[] = data ? JSON.parse(data) : [];
     // Estudar
                 if (editTask) {
-                    // Modo de edição: atualiza a tarefa existente
+
                     tasks = tasks.map((task) =>
                         task.id === editTask.id ? { ...task, title, description, photo } : task
                     );
     // Estudar
                 } else {
-                    // Modo de criação: adiciona uma nova tarefa
+
                     const id = tasks.length > 0 ? Math.max(...tasks.map((t) => t.id)) + 1 : 1;
                     const task = {
                         id,
@@ -61,7 +61,7 @@ const Adding = ({ route, navigation }: Props) => {
                     tasks.push(task);
                 }
     
-                // Salva o array atualizado no AsyncStorage
+
                 await AsyncStorage.setItem('tasks', JSON.stringify(tasks));
                 navigation.goBack();
             } catch (error) {
